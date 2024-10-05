@@ -1,13 +1,13 @@
 // Load the CSV file and create visualizations
-d3.csv("JavascriptFolders/Marukha javascript/mental_health_and_technology_usage_2024.csv").then(function(data) {
+
     // 1. Create Scatter Plot 1: Age vs. Sleep Hours
     createScatterPlot1(data);
 
     // 2. Create Scatter Plot 2: Technology Usage vs. Mental Health Score
-    createScatterPlot2(data);
-}).catch(function(error) {
-    
-});
+    //createScatterPlot2(data);
+
+   
+
 
 // Function to create the first scatter plot: Age vs. Sleep Hours
 function createScatterPlot1(data) {
