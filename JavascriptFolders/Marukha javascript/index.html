@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mental Health and Technology Usage Dashboard</title>
+    <!-- Include D3.js for data loading -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
     <!-- Include Plotly.js library -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <style>
@@ -24,7 +26,6 @@
         }
     </style>
 </head>
-
 <body>
     <div class="container">
         <div class="row">
@@ -51,10 +52,7 @@
             </div>
         </div>
     </div>
-
     <!-- Include your custom scripts -->
-    <!-- Include data.js first to ensure data is available for plot.js -->
-    <script src="data.js"></script> <!-- Make sure data.js contains your dataset -->
-    <script src="plot.js"></script> <!-- plot.js will use the data from data.js -->
+    <script src="plot.js"></script>
 </body>
 </html>
