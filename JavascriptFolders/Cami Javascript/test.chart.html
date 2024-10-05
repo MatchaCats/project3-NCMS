@@ -1,0 +1,29 @@
+<!DOCTYPE>
+<html>
+<head>
+   <meta charset- "UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1" />
+   <title>chart.js</title>
+</head>
+<body>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.1.1/chart.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.1.1/helpers.esm.min.js"></script>
+   <canvas id="graph" aria - label="chart" height="350" width="580"></canvas>
+   <script>
+      var chrt = document.getElementById("graph");
+      var graph = new Chart(chrt, {
+         type: 'bar',
+         data: {
+            labels: ["HTML", "CSS", "JAVASCRIPT", "CHART.JS", "JQUERY", "BOOTSTRP"],
+            datasets: [{
+               label: "online tutorial subjects",
+               data: [9, 8, 10, 7, 6, 12],
+            }],
+         },
+         options: {
+            responsive: true,
+         },
+      });
+   </script>
+</body>
+</html>

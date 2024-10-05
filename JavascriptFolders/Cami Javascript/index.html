@@ -22,24 +22,18 @@
     <div class="row">
       <div class="col-md-3">
         <div class="card card-body bg-light">
-          <h6>Dropdown Filter:</h6>
-          <select id="selDataset" onchange="optionChanged(this.value)"></select>
+          <h6>Dropdown Age Filter:</h6>
+          <select id="age-group" onchange="updateBar()">
+            <option value="18-29">18-29</option>
+            <option value="30-39">30-39</option>
+            <option value="40-49">40-49</option>
+            <option value="50+">50+</option>
+          </select>
         </div>
         <br>
-        <!-- <div class="card card-primary">
-          <div class="card-header">
-            <h4 class="card-title">Demographic Info</h4>
-          </div>
-          <div id="sample-metadata" class="card-body"></div>
-        </div> -->
       </div>
       <div class="col-md-9">
         <div id="bar"></div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div id="bubble"></div>
       </div>
     </div>
   </div>
