@@ -136,6 +136,6 @@ function createBoxPlot(data) {
         title: 'Distribution of Sleep Hours by Age Group',
         yaxis: { title: 'Sleep Hours' }
     };
- 
+
     Plotly.newPlot('boxPlot', traces, layout);
 }

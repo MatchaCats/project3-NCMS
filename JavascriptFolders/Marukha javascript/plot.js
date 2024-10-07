@@ -22,7 +22,19 @@ document.addEventListener('DOMContentLoaded', function() {
         createPlots(sampleData);
     }
 });
+
+function initializeDropdown() {
+    let options = ["All", "Age 18-30", "Age 31-50", "Age 51+"];
+    let dropdown = document.getElementById("selDataset");
+    options.forEach((option) => {
+        let opt = document.createElement("option");
+        opt.text = option;
+        opt.value = option;
+        dropdown.add(opt);
+    });
+}
  
+initializeDropdown();
 function createPlots(data) {
     createScatterPlot1(data);
     createScatterPlot2(data);
@@ -66,17 +78,21 @@ function createScatterPlot2(data) {
 function optionChanged(selectedValue) {
     console.log("Selected value:", selectedValue);
     // Add your filtering and plot updating logic here
+   
+    // Function to calculate average stress number for a specific age range
+
+    const scatterChart = () => {
+        const ageGroup = document.getElementById("age-group").value;
+
+        // Calculate averages for each gender in the selected age group
+        const avgStressMale = calculateAverage('Male', ageGroup);
+        const avgStressFemale = calculateAverage('Female', ageGroup);
+        const avgStressOther = calculateAverage('Other', ageGroup);
+
+        // Create the gauge charts with condition
+        createGauge('gauge-male', avgStressMale, `Average Stress Level for Males (${ageGroup})`);
+        createGauge('gauge-female', avgStressFemale, `Average Stress Level for Females (${ageGroup})`);
+        createGauge('gauge-other', avgStressOther, `Average Stress Level for Others (${ageGroup})`);
+    };
 }
  
-function initializeDropdown() {
-    let options = ["All", "Age 20-30", "Age 31-40", "Age 41+"];
-    let dropdown = document.getElementById("selDataset");
-    options.forEach((option) => {
-        let opt = document.createElement("option");
-        opt.text = option;
-        opt.value = option;
-        dropdown.add(opt);
-    });
-}
- 
-initializeDropdown();
