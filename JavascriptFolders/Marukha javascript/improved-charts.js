@@ -67,13 +67,13 @@ function createScatterPlot(data) {
         type: 'scatter'
     };
  
-    var layout = {
-        title: 'Average Sleep Hours by Age',
-        xaxis: { title: 'Age' },
-        yaxis: { title: 'Average Sleep Hours' }
-    };
+    //var layout = {
+       // title: 'Average Sleep Hours by Age',
+       // xaxis: { title: 'Age' },
+       // yaxis: { title: 'Average Sleep Hours' }
+  //  };
  
-    Plotly.newPlot('lineChart', [trace], layout);
+   // Plotly.newPlot('lineChart', [trace], layout);
 }
  
 //function createBarChart(data) {
@@ -132,10 +132,15 @@ function createScatterPlot(data) {
      //   };
   //  });
  
-    //var layout = {
-    //    title: 'Distribution of Sleep Hours by Age Group',
-    //    yaxis: { title: 'Sleep Hours' }
-   // };
+    var layout = {
+       title: 'Distribution of Sleep Hours by Age Group',
+       yaxis: { title: 'Sleep Hours' }
+    };
  
-   // Plotly.newPlot('boxPlot', traces, layout);
-}
+    Plotly.newPlot('boxPlot', traces, layout);
+    var layout = {
+        title: 'Distribution of Sleep Hours by Age Group',
+        yaxis: { title: 'Sleep Hours' }
+    };
+
+    Plotly.newPlot('boxPlot', traces, layout);
