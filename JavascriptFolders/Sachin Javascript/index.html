@@ -1,16 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chart.js Scatter Plot</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        canvas {
+            max-width: 600px;
+            max-height: 400px;
+        }
+    </style>
+</head>
+<body>
 
-const updateGauges = () => {
-    const ageGroup = document.getElementById("age-group").value;
-
-    // Calculate averages for each gender in the selected age group
-    const avgStressMale = calculateAverage('Male', ageGroup);
-    const avgStressFemale = calculateAverage('Female', ageGroup);
-    const avgStressOther = calculateAverage('Other', ageGroup);
-
-    // Create the gauge charts with condition
-    createGauge('gauge-male', avgStressMale, `Average Stress Level for Males (${ageGroup})`);
-    createGauge('gauge-female', avgStressFemale, `Average Stress Level for Females (${ageGroup})`);
-    createGauge('gauge-other', avgStressOther, `Average Stress Level for Others (${ageGroup})`);
-};
-
-meanMaleScreenTimeValue
+<canvas id="myChart"></canvas>
+<script>src="data.js"</script>
+<script src="chart.js"></script>
+</body>
+</html>

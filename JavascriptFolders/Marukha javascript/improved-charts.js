@@ -74,7 +74,7 @@ function createScatterPlot(data) {
   //  };
  
    // Plotly.newPlot('lineChart', [trace], layout);
-}
+//}
  
 //function createBarChart(data) {
     // Group data by technology usage (rounded to nearest hour) and calculate average mental health score
