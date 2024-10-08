@@ -81,6 +81,9 @@
 let socialMedia = [];
 let physicalActivity = [];
 
+const updateCharts = () => {
+  const ageGroup = document.getElementById("age-group").value;}
+  
 for (let i = 0; i < data.length; i++) {
     socialMedia.push(data[i].Social_Media_Usage_Hours);
     physicalActivity.push(data[i].Physical_Activity_Hours);
@@ -100,6 +103,7 @@ const socialMediaMean = meanSocialMedia(socialMedia);
 const physicalActivityMean = meanPhysicalActivity(physicalActivity);
 // Initialize Chart
 const ctx = document.getElementById('myChart');
+
 
   new Chart(ctx, {
     type: 'bar',

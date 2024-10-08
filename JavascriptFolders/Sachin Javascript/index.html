@@ -8,6 +8,13 @@
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <!-- Include Chart.js library -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <h6>Dropdown Age Filter:</h6>
+          <select id="age-group" onchange="updateCharts()">
+            <option value="18-29">18-29</option>
+            <option value="30-39">30-39</option>
+            <option value="40-49">40-49</option>
+            <option value="50+">50+</option>
+          </select>
     <style>
         body {
             font-family: Arial, sans-serif;
