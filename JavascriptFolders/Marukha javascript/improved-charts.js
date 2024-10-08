@@ -1,5 +1,4 @@
 // Load the data and create charts
-
 document.addEventListener('DOMContentLoaded', function() {
     d3.csv("mental_health_and_technology_usage_2024.csv").then(function(data) {
         // Parse numeric values
@@ -19,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
  
+// Function to create the scatter plot
 function createScatterPlot(data) {
     var trace = {
         x: data.map(d => d.Age),
@@ -29,13 +29,13 @@ function createScatterPlot(data) {
             size: 8,
             color: data.map(d => d.Age),
             colorscale: 'Viridis',
-            colorbar: {title: 'Age'}
+            colorbar: { title: 'Age' }
         }
     };
- 
+
     var layout = {
         title: 'Technology Usage vs. Mental Health Score',
-        xaxis: { title: 'Age)' },
+        xaxis: { title: 'Age' },
         yaxis: { title: 'Mental Health Score' },
         hovermode: 'closest'
     };
@@ -43,105 +43,67 @@ function createScatterPlot(data) {
     Plotly.newPlot('scatterPlot', [trace], layout);
 }
  
+// Function to create the line chart
 function createLineChart(data) {
-     //Group data by age and calculate average sleep hours
-   let ageGroups = {};
+    // Group data by age and calculate average sleep hours
+    let ageGroups = {};
     data.forEach(d => {
-       if (!ageGroups[d.Age]) {
-           ageGroups[d.Age] = [];
+        if (!ageGroups[d.Age]) {
+            ageGroups[d.Age] = [];
         }
-       ageGroups[d.Age].push(d.Sleep_Hours);
-   });
- 
+        ageGroups[d.Age].push(d.Sleep_Hours);
+    });
+
     let ages = Object.keys(ageGroups).sort((a, b) => a - b);
     let avgSleepHours = ages.map(age => {
-       return {
-           age: +age,
-           avgSleep: d3.mean(ageGroups[age])
+        return {
+            age: +age,
+            avgSleep: d3.mean(ageGroups[age])
         };
     });
- 
+
     var trace = {
         x: avgSleepHours.map(d => d.age),
         y: avgSleepHours.map(d => d.avgSleep),
         mode: 'lines+markers',
         type: 'scatter'
     };
- 
+
     var layout = {
         title: 'Average Sleep Hours by Age',
         xaxis: { title: 'Age' },
         yaxis: { title: 'Average Sleep Hours' }
     };
- 
-    Plotly.newPlot('lineChart', [trace], layout);
 
- 
-//function createBarChart(data) {
-    // Group data by technology usage (rounded to nearest hour) and calculate average mental health score
-    //let techUsageGroups = {};
-   // data.forEach(d => {
-      //  let roundedUsage = Math.round(d.Technology_Usage);
-      // // if (!techUsageGroups[roundedUsage]) {
-      //      techUsageGroups[roundedUsage] = [];
-       // }
-       // techUsageGroups[roundedUsage].push(d.Mental_Health_Score);
-    // /});
- 
-   // let usages = Object.keys(techUsageGroups).sort((a, b) => a - b);
-    //let avgMentalHealthScores = usages.map(usage => {
-     //   return {
-       ////     usage: +usage,
-        //    avgScore: d3.mean(techUsageGroups[usage])
-       // };
-   // });
- 
-   // var trace = {
-    //    x: avgMentalHealthScores.map(d => d.usage),
-     //   y: avgMentalHealthScores.map(d => d.avgScore),
-    //    type: 'bar'
-   // };
- 
-   // var layout = {
-      //  title: 'Average Mental Health Score by Technology Usage',
-      //  xaxis: { title: 'Technology Usage (Hours)' },
-     //   yaxis: { title: 'Average Mental Health Score' }
-   // };
- 
-   // Plotly.newPlot('barChart', [trace], layout);
-//}
- 
-//function createBoxPlot(data) {
-    // Group sleep hours data by age group
-// let ageGroups = {
-     //   '18-30': [],
-      //  '31-50': [],
-      //  '51+': []
-   // };
- 
-   // data.forEach(d => {
-    //    if (d.Age <= 30) ageGroups['18-30'].push(d.Sleep_Hours);
-     //   else if (d.Age <= 50) ageGroups['31-50'].push(d.Sleep_Hours);
-      //  else ageGroups['51+'].push(d.Sleep_Hours);
-   // });
- 
-    //var traces = Object.keys(ageGroups).map(group => {
-     //   return {
-      //      y: ageGroups[group],
-       //     type: 'box',
-       //     name: group
-     //   };
-  //  });
- 
-    var layout = {
-       title: 'Distribution of Sleep Hours by Age Group',
-       yaxis: { title: 'Sleep Hours' }
+    Plotly.newPlot('lineChart', [trace], layout);
+}
+
+// Uncommented BoxPlot Layout Example (if needed in future)
+function createBoxPlot(data) {
+    let ageGroups = {
+        '18-30': [],
+        '31-50': [],
+        '51+': []
     };
  
-    Plotly.newPlot('boxPlot', traces, layout);
+    data.forEach(d => {
+        if (d.Age <= 30) ageGroups['18-30'].push(d.Sleep_Hours);
+        else if (d.Age <= 50) ageGroups['31-50'].push(d.Sleep_Hours);
+        else ageGroups['51+'].push(d.Sleep_Hours);
+    });
+
+    var traces = Object.keys(ageGroups).map(group => {
+        return {
+            y: ageGroups[group],
+            type: 'box',
+            name: group
+        };
+    });
+
     var layout = {
         title: 'Distribution of Sleep Hours by Age Group',
         yaxis: { title: 'Sleep Hours' }
     };
 
     Plotly.newPlot('boxPlot', traces, layout);
+}

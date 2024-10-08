@@ -1,16 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Usage vs Physical Activity</title>
+    <!-- Include D3.js for data loading -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <!-- Include Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+         body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+         
 
-const updateGauges = () => {
-    const ageGroup = document.getElementById("age-group").value;
-
-    // Calculate averages for each gender in the selected age group
-    const avgStressMale = calculateAverage('Male', ageGroup);
-    const avgStressFemale = calculateAverage('Female', ageGroup);
-    const avgStressOther = calculateAverage('Other', ageGroup);
-
-    // Create the gauge charts with condition
-    createGauge('gauge-male', avgStressMale, `Average Stress Level for Males (${ageGroup})`);
-    createGauge('gauge-female', avgStressFemale, `Average Stress Level for Females (${ageGroup})`);
-    createGauge('gauge-other', avgStressOther, `Average Stress Level for Others (${ageGroup})`);
-};
-
-meanMaleScreenTimeValue
+        }
+        canvas {
+            max-width: 1200px;
+            max-height: 800px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 p-5 text-center bg-light">
+                <!-- Create divs for scatter plots -->
+            
+                <div>
+                    <canvas id="myChart"></canvas>
+                  </div>
+            </div>
+        </div>
+        <br>
+        
+    <!-- Include your custom scripts -->
+     <script src="data.js"></script>
+    <script  src="myChart.js"></script>
+</body>
+</html>
