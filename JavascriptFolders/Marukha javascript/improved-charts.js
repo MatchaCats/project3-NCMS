@@ -1,4 +1,5 @@
 // Load the data and create charts
+
 document.addEventListener('DOMContentLoaded', function() {
     d3.csv("mental_health_and_technology_usage_2024.csv").then(function(data) {
         // Parse numeric values
@@ -42,23 +43,23 @@ function createScatterPlot(data) {
     Plotly.newPlot('scatterPlot', [trace], layout);
 }
  
-//function createLineChart(data) {
-    // Group data by age and calculate average sleep hours
-   // let ageGroups = {};
-    //data.forEach(d => {
-      //  if (!ageGroups[d.Age]) {
-       //     ageGroups[d.Age] = [];
-       // }
-       // ageGroups[d.Age].push(d.Sleep_Hours);
-   // });
+function createLineChart(data) {
+     //Group data by age and calculate average sleep hours
+   let ageGroups = {};
+    data.forEach(d => {
+       if (!ageGroups[d.Age]) {
+           ageGroups[d.Age] = [];
+        }
+       ageGroups[d.Age].push(d.Sleep_Hours);
+   });
  
-   // let ages = Object.keys(ageGroups).sort((a, b) => a - b);
-   // let avgSleepHours = ages.map(age => {
-       // return {
-       //     age: +age,
-         //   avgSleep: d3.mean(ageGroups[age])
-       // };
-   // });
+    let ages = Object.keys(ageGroups).sort((a, b) => a - b);
+    let avgSleepHours = ages.map(age => {
+       return {
+           age: +age,
+           avgSleep: d3.mean(ageGroups[age])
+        };
+    });
  
     var trace = {
         x: avgSleepHours.map(d => d.age),
@@ -67,14 +68,14 @@ function createScatterPlot(data) {
         type: 'scatter'
     };
  
-    //var layout = {
-       // title: 'Average Sleep Hours by Age',
-       // xaxis: { title: 'Age' },
-       // yaxis: { title: 'Average Sleep Hours' }
-  //  };
+    var layout = {
+        title: 'Average Sleep Hours by Age',
+        xaxis: { title: 'Age' },
+        yaxis: { title: 'Average Sleep Hours' }
+    };
  
-   // Plotly.newPlot('lineChart', [trace], layout);
-}
+    Plotly.newPlot('lineChart', [trace], layout);
+
  
 //function createBarChart(data) {
     // Group data by technology usage (rounded to nearest hour) and calculate average mental health score
