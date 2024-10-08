@@ -100,9 +100,63 @@ const calculateAverageSleep = (gender, ageRange) => {
   
 };
 
-let maleMetricAveragesArray = []
-let femaleMetricAveragesArray = []
-let otherMetricAveragesArray = []
+// Function to calculate average social media usage within a specific age range
+const calculateAverageOverallSocialMedia = (ageRange) => {
+  const [minAge, maxAge] = ageRange === '50+' ? [50, Infinity] : ageRange.split('-').map(Number);
+  const filteredData = data.filter(d => d.Age >= minAge && d.Age <= maxAge);
+  // console.log(`Filtered data in age range ${ageRange}:`, filteredData);
+
+  if (filteredData.length === 0) {
+      console.warn(`No data found for age range ${ageRange}. Defaulting to 1.`);
+      return 1; // Default value if no data is found
+  }
+
+  const totalSocialMedia = filteredData.reduce((sum, d) => {
+      if (typeof d.Social_Media_Usage_Hours === 'number') {
+          return sum + d.Social_Media_Usage_Hours; // Ensure it's a number before adding
+      }
+      console.warn(`Non-numeric value found:`, d.Social_Media_Usage_Hours);
+      return sum; // Continue summing without this entry
+  }, 0);
+
+  const averageSocialMedia = (totalSocialMedia / filteredData.length).toFixed(2); // Calculate the average and round to 2 decimal places
+  // console.log(`Average social media usage in age range ${ageRange}: ${averageSleep}`);
+  return parseFloat(averageSocialMedia); // Convert back to a number
+  
+};
+
+// Function to calculate average physical activity usage within a specific age range
+const calculateAverageOverallPhysicalActivity = (ageRange) => {
+  const [minAge, maxAge] = ageRange === '50+' ? [50, Infinity] : ageRange.split('-').map(Number);
+  const filteredData = data.filter(d => d.Age >= minAge && d.Age <= maxAge);
+  // console.log(`Filtered data in age range ${ageRange}:`, filteredData);
+
+  if (filteredData.length === 0) {
+      console.warn(`No data found for age range ${ageRange}. Defaulting to 1.`);
+      return 1; // Default value if no data is found
+  }
+
+  const totalOverallPhysicalActivity = filteredData.reduce((sum, d) => {
+      if (typeof d.Physical_Activity_Hours === 'number') {
+          return sum + d.Physical_Activity_Hours; // Ensure it's a number before adding
+      }
+      console.warn(`Non-numeric value found:`, d.Physical_Activity_Hours);
+      return sum; // Continue summing without this entry
+  }, 0);
+
+  const averageOverallPhysicalActivity = (totalOverallPhysicalActivity / filteredData.length).toFixed(2); // Calculate the average and round to 2 decimal places
+  // console.log(`Average overall physical activity in age range ${ageRange}: ${averageSleep}`);
+  return parseFloat(averageOverallPhysicalActivity); // Convert back to a number
+  
+};
+
+
+let maleMetricAveragesArray = [];
+let femaleMetricAveragesArray = [];
+let otherMetricAveragesArray = [];
+let overallMetricArray = [];
+let myChart = null;
+
 
 const updateCharts = () => {
   const ageGroup = document.getElementById("age-group").value;
@@ -112,48 +166,52 @@ const updateCharts = () => {
   const avgStressFemale = calculateAverageStress('Female', ageGroup);
   const avgStressOther = calculateAverageStress('Other', ageGroup);
 
+  // Reset arrays for bar charts
   maleMetricAveragesArray.splice(0, maleMetricAveragesArray.length);
   femaleMetricAveragesArray.splice(0, femaleMetricAveragesArray.length);
   otherMetricAveragesArray.splice(0, otherMetricAveragesArray.length);
+  overallMetricArray.splice(0, overallMetricArray.length);
+
 
   // Calculate averages for each gender in the selected age group
   const avgScreenTimeMale = calculateAverageScreenTime('Male', ageGroup);
         maleMetricAveragesArray.push(avgScreenTimeMale);
-
   const avgPhysicalActivityMale = calculateAveragePhysicalActivity('Male', ageGroup);
         maleMetricAveragesArray.push(avgPhysicalActivityMale);
-
   const avgSleepMale = calculateAverageSleep('Male', ageGroup);
         maleMetricAveragesArray.push(avgSleepMale);
 
   const avgScreenTimeFemale = calculateAverageScreenTime('Female', ageGroup);
         femaleMetricAveragesArray.push(avgScreenTimeFemale);
-  
   const avgPhysicalActivityFemale = calculateAveragePhysicalActivity('Female', ageGroup);
         femaleMetricAveragesArray.push(avgPhysicalActivityFemale);
-
   const avgSleepFemale = calculateAverageSleep('Female', ageGroup);
         femaleMetricAveragesArray.push(avgSleepFemale);
 
   const avgScreenTimeOther = calculateAverageScreenTime('Other', ageGroup);
         otherMetricAveragesArray.push(avgScreenTimeOther);
-  
   const avgPhysicalActivityOther = calculateAveragePhysicalActivity('Other', ageGroup);
         otherMetricAveragesArray.push(avgPhysicalActivityOther);
-  
   const avgSleepOther = calculateAverageSleep('Other', ageGroup);
         otherMetricAveragesArray.push(avgSleepOther);
 
-  console.log(maleMetricAveragesArray)
-  console.log(femaleMetricAveragesArray)
-  console.log(otherMetricAveragesArray)
+  const avgOverallSocialMedia = calculateAverageOverallSocialMedia(ageGroup);
+        overallMetricArray.push(avgOverallSocialMedia);
+  const avgOverallPhysicalActivity = calculateAverageOverallPhysicalActivity(ageGroup);
+        overallMetricArray.push(avgOverallPhysicalActivity);
 
+  // console.log(maleMetricAveragesArray)
+  // console.log(femaleMetricAveragesArray)
+  // console.log(otherMetricAveragesArray)
+  // console.log(avgOverallSocialMedia)
+  console.log(overallMetricArray)
 
   // Create the gauge charts with condition
   createGauge('gauge-male', avgStressMale, `Average Stress Level for Males (${ageGroup})`);
   createGauge('gauge-female', avgStressFemale, `Average Stress Level for Females (${ageGroup})`);
   createGauge('gauge-other', avgStressOther, `Average Stress Level for Others (${ageGroup})`);
   createBar();
+  createChart();
 };
 
 // Function to create a gauge chart
@@ -239,14 +297,39 @@ const createBar = () => {
   Plotly.newPlot("bar", graphData, layout);
 }
 
+
+const createChart = () => {
+  if(myChart != null){
+    myChart.destroy();
+  };
+
+  const ctx = document.getElementById('myChart');
+
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Social Media Usage', 'Physical Activity'],
+      datasets: [{
+        label: 'Average Social Media Usage and Physical Activity',
+        data: overallMetricArray,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+ 
+}
+
 // Initialize the gauges with the default age group
 updateCharts();
 
 
-  // // Create the Bar Charts with condition
-  // createBar('bar-male', avgScreenTimeMale, `Average Stress Level for Males (${ageGroup})`);
-  // createBar('gauge-female', avgStressFemale, `Average Stress Level for Females (${ageGroup})`);
-  // createBar('gauge-other', avgStressOther, `Average Stress Level for Others (${ageGroup})`);
 
 
 

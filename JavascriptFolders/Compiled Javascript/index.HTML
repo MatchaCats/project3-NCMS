@@ -22,30 +22,43 @@
     <div class="row">
       <div class="col-md-3">
         <div class="card card-body bg-light">
-          <h6>Dropdown Age Filter:</h6>
+          <h6>Select Age Range:</h6>
           <select id="age-group" onchange="updateCharts()">
             <option value="18-29">18-29</option>
             <option value="30-39">30-39</option>
             <option value="40-49">40-49</option>
             <option value="50+">50+</option>
-        </select>
+          </select>
         </div>
         <br>
         <div id="bar" style="width: 1200px; height: 400px;"></div></div>
         <div></div>
-        <div id="gauge-male" style="width: 400px; height: 400px;"></div>
-        <div id="gauge-female" style="width: 400px; height: 400px;"></div>
-        <div id="gauge-other" style="width: 400px; height: 400px;"></div>
+        <div id="gauge-male" style="width: 350px; height: 350px;"></div>
+        <div id="gauge-female" style="width: 350px; height: 350px;"></div>
+        <div id="gauge-other" style="width: 350px; height: 350px;"></div>
         
       </div>
     </div>
-    
+
+  <div class="container">
+    <div class="row">
+        <div class="col-md-12 p-5 text-center bg-light">
+            <!-- Create divs for bar chart -->
+        
+            <div>
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+    </div>
   </div>
 
   <script src= "data.js"></script>
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="./static/js/app.js"></script>
+  
+  
 
 </body>
 
