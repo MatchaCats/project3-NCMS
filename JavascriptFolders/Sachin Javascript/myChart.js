@@ -53,31 +53,33 @@
 //   };
 
 
-import Chart from 'chart.js/auto';
+
+
+
+// const data = {
+//     datasets: [{
+//         label: 'Social Media Usage vs. Physical Activity',
+//         data: [{ x: socialMediaMean, y: physicalActivityMean }],
+//         backgroundColor: 'rgb(255, 99, 132)'
+//     }],
+// };
+
+// const config = {
+//     type: scatter,
+//     data: data,
+//     options: {
+//         scales: {
+//             x: {
+//                 type: 'linear',
+//                 position: 'bottom'
+//             }
+//         }
+//     }
+// };
+
 
 let socialMedia = [];
 let physicalActivity = [];
-
-const data = {
-    datasets: [{
-        label: 'Social Media Usage vs. Physical Activity',
-        data: [{ x: socialMediaMean, y: physicalActivityMean }],
-        backgroundColor: 'rgb(255, 99, 132)'
-    }],
-};
-
-const config = {
-    type: 'scatter',
-    data: data,
-    options: {
-        scales: {
-            x: {
-                type: 'linear',
-                position: 'bottom'
-            }
-        }
-    }
-};
 
 for (let i = 0; i < data.length; i++) {
     socialMedia.push(data[i].Social_Media_Usage_Hours);
@@ -97,4 +99,23 @@ function meanPhysicalActivity(arr) {
 const socialMediaMean = meanSocialMedia(socialMedia);
 const physicalActivityMean = meanPhysicalActivity(physicalActivity);
 // Initialize Chart
-const myChart = new Chart(document.getElementById('myChart'), config);
+const ctx = document.getElementById('myChart');
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Social Media Usage', 'Physical Activity'],
+      datasets: [{
+        label: 'Average Social Media Usage and Physical Activity',
+        data: socialMedia, physicalActivity,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });

@@ -3,27 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chart.js Scatter Plot</title>
+    <title>Social Media Usage vs Physical Activity</title>
+    <!-- Include D3.js for data loading -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <!-- Include Chart.js library -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        body {
+         body {
             font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
+         
+
         }
         canvas {
-            max-width: 600px;
-            max-height: 400px;
+            max-width: 1200px;
+            max-height: 800px;
         }
     </style>
 </head>
 <body>
-
-<canvas id="myChart"></canvas>
-<script>src="data.js"</script>
-<script src="chart.js"></script>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 p-5 text-center bg-light">
+                <!-- Create divs for scatter plots -->
+            
+                <div>
+                    <canvas id="myChart"></canvas>
+                  </div>
+            </div>
+        </div>
+        <br>
+        
+    <!-- Include your custom scripts -->
+     <script src="data.js"></script>
+    <script  src="myChart.js"></script>
 </body>
 </html>
