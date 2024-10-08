@@ -9,18 +9,30 @@
     <!-- Include Chart.js library -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-         body {
+        body {
             font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-         
-
+            margin: 0;
         }
+        /* Adjust the canvas size */
         canvas {
-            max-width: 1200px;
-            max-height: 800px;
+            width: 1200px;   /* Set width directly */
+            height: 800px;   /* Set height directly */
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50%;
+            height: 60%;
+        }
+        .row {
+            width: 100%;
+            text-align: center;
+            background-color: #f8f9fa;
         }
     </style>
 </head>
