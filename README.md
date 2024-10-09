@@ -3,6 +3,11 @@
 This project involves building an interactive dashboard to explore a Mental Health and Technology dataset (see resources) using Javascript, Plotly, and Chart.js
 This project's dataset consists of results from 10,000 participants and was stored, cleaned, and extracted using a MongoDB database
 
+See index.html for html code running dashboard webpage: 
+See static --> app.js for javascript application with code for generating visualizations
+See data.js for data in javascript format (converted to JSON from CSV using MongoDB)
+See mental_health_and_technology_usage_2024.csv for original data file
+
 The dropdown menu on the dashboard filters all data into four age-range categories: 1) 18-29, 2) 30-39, 3) 40-49, and 4) 50+
 A plotly Bar chart displays average daily hours of screen time, physical activity, and sleep by gender (male, female, other)
 A plotly gauge chart for each gender (male, female, and other) displays average stress level
