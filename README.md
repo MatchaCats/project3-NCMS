@@ -12,5 +12,11 @@ In our data visualization project, we recognized the critical importance of data
 
 Additionally, we committed to maintaining the accuracy and integrity of our analysis. We verified that the dataset sourced from Kaggle was reliable and up-to-date, as misrepresentation could lead to harmful conclusions. Our visualizations were grounded in contextual integrity, providing viewers with a clear understanding of the data’s origins. By transparently communicating our methodology and findings, we aimed to build trust with our audience and ensure that our visualizations served as a responsible exploration of the relationship between technology usage and mental health indicators.
 
+In our findings and analysis of the impact of technology usage on mental health, we found that screen time has an inverse relationship with mental well-being. The first bar chart indicates that individuals who spend more than the average 5-7 hours per day on screens—especially on social media—tend to experience declining mental health and increased stress levels.
+Further analysis of age demographics revealed that young adults (ages 18-29 & 30-39) are the most frequent technology users, often spending substantial time online to stay connected and manage daily tasks. The gauge chart reflects high-stress levels in this group.
+However, technology does not have negative effecs all the time as far as we balance it. The dataset also highlighted its positive effects; individuals engaged in online support systems—such as mental health communities and counseling platforms—reported improved mental health outcomes. This suggests that using technology to connect with others can provide significant benefits.
+
+
+
 Resources:
 Dataset source: https://www.kaggle.com/datasets/waqi786/mental-health-and-technology-usage-dataset
