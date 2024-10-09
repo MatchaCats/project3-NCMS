@@ -12,6 +12,7 @@ The dropdown menu on the dashboard filters all data into four age-range categori
 A plotly Bar chart displays average daily hours of screen time, physical activity, and sleep by gender (male, female, other)
 A plotly gauge chart for each gender (male, female, and other) displays average stress level
 A chart.js bar chart displays average overall social media usage and physical activity hours
+See Mental Health.pdf for presentation slide deck
 
 In our data visualization project, we recognized the critical importance of data privacy and anonymity, especially when handling sensitive information such as mental health status. To avoid the risk of revealing personally identifiable information, we ensured that all visualizations presented aggregated data rather than show individual responses. All participants in the dataset were referred to only by created ID numbers, which further protected their identities and helped prevent any potential stigmatization that might arise from misinterpreting specific data points. By anonymizing the data in this way, we aimed to foster a respectful and ethical environment for discussing the implications of technology usage on mental health. The data was collected through self-reported surveys, highlighting the importance of considering the subjective nature of the responses in our analysis.
 
